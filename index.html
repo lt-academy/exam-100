@@ -77,28 +77,6 @@
             position: relative;
         }
 
-        .brand-lockup {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 24px;
-            padding-right: 24px;
-        }
-
-        .brand-logo {
-            width: 96px;
-            height: auto;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.96);
-            padding: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-            flex-shrink: 0;
-        }
-
-        .brand-text {
-            min-width: 0;
-        }
-
         .intro-panel::after {
             content: "";
             position: absolute;
@@ -335,22 +313,6 @@
             justify-content: space-between;
             align-items: center;
             gap: 18px;
-        }
-
-        .exam-header-main {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            min-width: 0;
-        }
-
-        .exam-header-logo {
-            width: 72px;
-            height: auto;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 6px;
-            flex-shrink: 0;
         }
 
         .exam-title {
@@ -709,17 +671,6 @@
                 padding: 28px 22px;
             }
 
-            .brand-lockup {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 14px;
-                padding-right: 0;
-            }
-
-            .brand-logo {
-                width: 82px;
-            }
-
             .intro-panel h1 {
                 font-size: 2.1rem;
             }
@@ -728,15 +679,6 @@
                 flex-direction: column;
                 gap: 15px;
                 align-items: flex-start;
-                padding: 20px 18px;
-            }
-
-            .exam-header-main {
-                align-items: flex-start;
-            }
-
-            .exam-header-logo {
-                width: 58px;
             }
 
             .exam-stats,
@@ -748,16 +690,6 @@
             .exam-footer {
                 flex-direction: column;
                 gap: 15px;
-                padding: 18px;
-            }
-
-            .exam-body {
-                padding: 18px;
-                max-height: none;
-            }
-
-            .question-container {
-                padding: 20px 16px;
             }
 
             .question-nav {
@@ -767,59 +699,6 @@
             .nav-btn {
                 flex: 1;
             }
-
-            .form-card,
-            .candidate-result-card {
-                padding: 22px 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                border-radius: 16px;
-            }
-
-            .intro-panel h1 {
-                font-size: 1.75rem;
-            }
-
-            .intro-badge {
-                font-size: 0.74rem;
-                padding: 7px 12px;
-            }
-
-            .intro-lead,
-            .result-message,
-            .form-card p {
-                font-size: 0.95rem;
-            }
-
-            .stat-box {
-                padding: 16px;
-            }
-
-            .stat-number {
-                font-size: 1.55rem;
-            }
-
-            .instruction-item {
-                padding: 12px;
-            }
-
-            .btn,
-            .btn-restart,
-            .nav-btn {
-                width: 100%;
-            }
-
-            .question-nav {
-                flex-direction: column;
-            }
-
-            .timer {
-                width: 100%;
-                min-width: 0;
-            }
         }
     </style>
 </head>
@@ -827,13 +706,8 @@
     <div class="container">
         <div class="splash-screen" id="splashScreen">
             <div class="intro-panel">
-                <div class="brand-lockup">
-                    <img src="logo.png" alt="LT Academy Logo" class="brand-logo">
-                    <div class="brand-text">
-                        <div class="intro-badge">Secure Candidate Assessment</div>
-                        <h1>Freight Forwarding Professional Examination</h1>
-                    </div>
-                </div>
+                <div class="intro-badge">Secure Candidate Assessment</div>
+                <h1>Freight Forwarding Professional Examination</h1>
                 <p class="intro-lead">
                     Complete the candidate registration details before starting the assessment.
                     Final scores can be posted to Google Sheets for centralized record keeping.
@@ -855,7 +729,7 @@
                 <div class="instruction-list">
                     <div class="instruction-item">
                         <span class="instruction-step">1</span>
-                        <div>Enter the candidate name, email address, phone number, and exam date before starting.</div>
+                        <div>Enter the candidate name, ID, email, phone number, and exam center.</div>
                     </div>
                     <div class="instruction-item">
                         <span class="instruction-step">2</span>
@@ -877,12 +751,20 @@
                             <input type="text" id="candidateName" placeholder="Enter full name" required>
                         </div>
                         <div class="input-group">
+                            <label for="candidateId">Candidate ID</label>
+                            <input type="text" id="candidateId" placeholder="Example: FF-2026-001" required>
+                        </div>
+                        <div class="input-group">
                             <label for="candidateEmail">Email Address</label>
                             <input type="email" id="candidateEmail" placeholder="candidate@example.com" required>
                         </div>
                         <div class="input-group">
                             <label for="candidatePhone">Phone Number</label>
                             <input type="tel" id="candidatePhone" placeholder="Enter contact number" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="examCenter">Exam Center</label>
+                            <input type="text" id="examCenter" placeholder="Training center or branch name" required>
                         </div>
                         <div class="input-group">
                             <label for="examDate">Exam Date</label>
@@ -902,13 +784,10 @@
 
         <div class="exam-screen" id="examScreen">
             <div class="exam-header">
-                <div class="exam-header-main">
-                    <img src="logo.png" alt="LT Academy Logo" class="exam-header-logo">
-                    <div>
-                        <div class="exam-title">Freight Forwarding Professional Examination</div>
-                        <div class="exam-subtitle">Candidate verification and timed assessment in progress</div>
-                        <div class="candidate-summary" id="candidateSummary"></div>
-                    </div>
+                <div>
+                    <div class="exam-title">Freight Forwarding Professional Examination</div>
+                    <div class="exam-subtitle">Candidate verification and timed assessment in progress</div>
+                    <div class="candidate-summary" id="candidateSummary"></div>
                 </div>
                 <div class="timer" id="timer">
                     <span>Time Left</span>
@@ -952,12 +831,16 @@
                         <strong id="resultCandidateName">-</strong>
                     </div>
                     <div class="result-grid-item">
+                        <span>Candidate ID</span>
+                        <strong id="resultCandidateId">-</strong>
+                    </div>
+                    <div class="result-grid-item">
                         <span>Email Address</span>
                         <strong id="resultCandidateEmail">-</strong>
                     </div>
                     <div class="result-grid-item">
-                        <span>Phone Number</span>
-                        <strong id="resultCandidatePhone">-</strong>
+                        <span>Exam Center</span>
+                        <strong id="resultExamCenter">-</strong>
                     </div>
                 </div>
                 <div class="submission-status info" id="submissionStatus">
@@ -1028,8 +911,10 @@
         function collectCandidateDetails() {
             const details = {
                 name: document.getElementById('candidateName').value.trim(),
+                candidateId: document.getElementById('candidateId').value.trim(),
                 email: document.getElementById('candidateEmail').value.trim(),
                 phone: document.getElementById('candidatePhone').value.trim(),
+                center: document.getElementById('examCenter').value.trim(),
                 examDate: document.getElementById('examDate').value
             };
 
@@ -1054,12 +939,14 @@
 
             document.getElementById('candidateSummary').innerHTML = `
                 <div class="candidate-pill">${candidateDetails.name}</div>
-                <div class="candidate-pill">${candidateDetails.email}</div>
+                <div class="candidate-pill">${candidateDetails.candidateId}</div>
+                <div class="candidate-pill">${candidateDetails.center}</div>
             `;
 
             document.getElementById('resultCandidateName').textContent = candidateDetails.name;
+            document.getElementById('resultCandidateId').textContent = candidateDetails.candidateId;
             document.getElementById('resultCandidateEmail').textContent = candidateDetails.email;
-            document.getElementById('resultCandidatePhone').textContent = candidateDetails.phone;
+            document.getElementById('resultExamCenter').textContent = candidateDetails.center;
         }
 
         function showQuestion(index) {
@@ -1213,8 +1100,10 @@
                 unansweredQuestions: unanswered,
                 percentage: percentage,
                 candidateName: candidateDetails ? candidateDetails.name : '',
+                candidateId: candidateDetails ? candidateDetails.candidateId : '',
                 candidateEmail: candidateDetails ? candidateDetails.email : '',
                 candidatePhone: candidateDetails ? candidateDetails.phone : '',
+                examCenter: candidateDetails ? candidateDetails.center : '',
                 examDate: candidateDetails ? candidateDetails.examDate : '',
                 answers: JSON.stringify(answers)
             };
@@ -1245,7 +1134,7 @@
         }
 
         async function submitResultToGoogleSheets(payload) {
-            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE')) {
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('https://script.google.com/macros/s/AKfycbxk6l-dzn8mIGdvXSXck30849DnZfUQ2Mfyi4rqzGWKd6z4BDRWsJsONZAwZ3ORktS7/exec')) {
                 return {
                     status: 'info',
                     message: 'Google Sheets is not configured yet. Add your deployed Google Apps Script web app URL to GOOGLE_SCRIPT_URL to save candidate results automatically.'
@@ -1253,21 +1142,6 @@
             }
 
             try {
-                if (navigator.sendBeacon) {
-                    const blob = new Blob(
-                        [JSON.stringify(payload)],
-                        { type: 'text/plain;charset=utf-8' }
-                    );
-                    const queued = navigator.sendBeacon(GOOGLE_SCRIPT_URL, blob);
-
-                    if (queued) {
-                        return {
-                            status: 'success',
-                            message: 'Result submission was sent to Google Sheets. Please check the sheet for the new candidate row.'
-                        };
-                    }
-                }
-
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -1279,12 +1153,12 @@
 
                 return {
                     status: 'success',
-                    message: 'Result submission was sent to Google Sheets. Please check the sheet for the new candidate row.'
+                    message: 'Result submission was sent to Google Sheets. Verify the connected sheet to confirm the new candidate entry.'
                 };
             } catch (error) {
                 return {
                     status: 'error',
-                    message: 'The exam was submitted, but Google Sheets sync failed. Check the Apps Script deployment, then redeploy the web app and try one test submission again.'
+                    message: 'The exam was submitted, but Google Sheets sync failed. Check the Apps Script deployment URL and internet access, then try again.'
                 };
             }
         }
